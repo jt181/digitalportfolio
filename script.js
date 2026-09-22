@@ -86,7 +86,9 @@ const init = () => {
   setupIntersectionObserver();
   setupActiveSectionWatcher();
   navToggle?.addEventListener("click", handleToggle);
-  navLinks?.addEventListener("click", smoothScroll);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navLinks?.classList.contains("is-open")) { closeMenu(); navToggle?.focus(); }
+  });
   document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListener("click", smoothScroll));
   window.addEventListener("resize", () => {
     if (window.innerWidth > 880) closeMenu();
